@@ -1,10 +1,11 @@
 
 class Spring implements sFactory{ 
 
+  // position
   Anchor anchor=null;
   Mover anc;
   String name;
-  // Longeur de l'élastique
+  // Rest length and spring constant
   float len;
   float k = 0.2;
   
@@ -18,13 +19,15 @@ Spring(){};
     name=_name;
   } 
 
-  // Calcul de la force du spring
+  // Calculate spring force
   void update() {
  
     if(!mov.touched)
     {
              PVector force= PVector.sub(mov.position, anchor.position);
+    // What is distance
     float d = force.mag();
+    // Stretch is difference between current distance and rest length
     float stretch = d-len;
     // F = k * stretch
     force.normalize();
@@ -35,14 +38,15 @@ Spring(){};
  
    
   }
- //Vérifie si l'élastique est soit trop court ou trop long
+ // Constrain the distance between bob and anchor between min and max
   void constrainLength(Mover b, float minlen, float maxlen) {
     PVector dir = PVector.sub(b.position, anchor.position);
     float d = dir.mag();
+    // Is it too short?
     if (d < minlen) {
       dir.normalize();
       dir.mult(minlen);
-      //teleport l'élastique à la position initiale
+      // Reset position and stop from moving (not realistic physics)
       b.position = PVector.add(anchor.position, dir);
       b.velocity.mult(0);
       // Is it too long?
@@ -50,6 +54,7 @@ Spring(){};
     else if (d > maxlen) {
       dir.normalize();
       dir.mult(maxlen);
+      // Reset position and stop from moving (not realistic physics)
       b.position = PVector.add(anchor.position, dir);
       b.velocity.mult(0);
     }

@@ -9,9 +9,7 @@ class Net{
 
  int nbmovers=3;
  Net(Anchor _left,Anchor _right){
-  /**
-  Left et Right sont des springs qui ont un ancre alors que les autres sont ceux du milieu.
-  */
+
     movers[0]=new Mover(Positionl,1);
     movers[1]=new Mover(Positionm,1);
     movers[2]=new Mover(Positionr,1);

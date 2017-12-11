@@ -52,20 +52,29 @@ class Mover {
     ellipse(position.x,position.y,20,20);
     }
     else{
-        stroke(255);
+          stroke(255);
     fill(255,218,185);
     ellipse(position.x,position.y,50,50);
     }
 
   } 
   void checkEdges() {
-
+    /*if (position.x > width) {
+      position.x = width;
+      velocity.x *= -0.9;
+    } else if (position.x < 0) {
+      velocity.x *= -0.9;
+      position.x = 0;
+    }
+    */
     if (position.y+25 > height) {
       velocity.y *= -0.9;
       position.y = height;
      touched=true;
       ps = new ParticleSystem(new PVector(width/2,height-10));   
+      //this.velocity=new PVector(0,0);
       this.mass=0;
+      //this.acceleration=new PVector(0,0);
     }
       else if(position.y <=0){
       velocity.y*=-0.9;
@@ -79,6 +88,7 @@ boolean isInside(Net l) {
     return true;
    
    return false;
-  }
+}
   
+//bracket de fin de classe
 }

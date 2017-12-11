@@ -15,9 +15,8 @@ sFactory netSpr=null;
 boolean exploded=false;
 
 void setup() {
-  size(800,600);
-  //fullScreen();
-
+  //size(800,600);
+  fullScreen();
   anchor=new Anchor(width/2,40);
   left= new Anchor(0,height/2-10);
   right= new Anchor(width-20,height/2-10);
@@ -31,7 +30,6 @@ void setup() {
 }
 
 void draw() {
-  //Si l'état est en splash screen
   if(current==current.Splash){
     background(255);
     fill(0);
@@ -42,7 +40,6 @@ void draw() {
   }
   else
   {
-    //boucle d'affichage de l'animation
       background( 0);
   anchor.display();
   left.display();
@@ -70,7 +67,6 @@ void update(){
     net.update();
   }
   mov.checkEdges();
-  //si le mover qui tombe touche le mover du milieu du filet, ce dernier suit le mover
   if(mov.isInside(net)){
   net.movers[1].applyHit(mov.velocity,mov.mass);
   net.movers[1].mass=mov.mass;
@@ -83,7 +79,7 @@ void update(){
 }
 void display(){
           net.display();
-  //si le mover a toucher le bas de l'écran
+
   if(mov.touched  )
   {
        mov.ps.addParticle();
